@@ -16,14 +16,17 @@ locals {
 
 # create some s3 buckets
 resource "aws_s3_bucket" "this" {
-  count         = "${length(var.bucketnames)}"
-  bucket        = "${element(var.bucketnames, count.index)}"
-  acl           = var.acl
+  count                   = "${length(var.bucketnames)}"
+  bucket                  = "${element(var.bucketnames, count.index)}"
+  acl                     = var.acl
+  block_public_acls       = var.block_public_acls
+  block_public_policy     = var.block_public_policy
+  restrict_public_buckets = var.restrict_public_buckets
   versioning {
-    enabled = var.versioning
+    enabled               = var.versioning
   }
   tags = {
-    Owner = "Terraform"
+    Owner                 = "Terraform"
 	}
 }
 
