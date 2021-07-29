@@ -5,6 +5,7 @@ eg
      |_ Bucketname1
      |_ Bucketname1
      |_ Bucketname3
+
 or something like
 
     |_ Bucketname1
@@ -17,9 +18,11 @@ or something like
       |_ Folder_bar
         |_ Folder_foo_bar
       |_ Folder_baz
+
 ## Examples for main.tf
 This example will create **one** bucket with the folders *foo*, *bar*, *baz* & the subfolder *qux* inside *foo*:
 
+```hcl
     module "s3" {
     source         = "github.com/dme86/tf-aws-s3?ref=v0.1"
     bucketnames    = ["example-s3-bucketname"]
@@ -28,9 +31,11 @@ This example will create **one** bucket with the folders *foo*, *bar*, *baz* & t
        Owner       = "Terraform"
      }
     }
+```
 
 This example will only create **one** *empty* bucket:
 
+```hcl
     module "s3" {
     source         = "github.com/dme86/tf-aws-s3?ref=v0.1"
     bucketnames    = ["example-s3-bucketname"]
@@ -39,9 +44,11 @@ This example will only create **one** *empty* bucket:
        Owner       = "Terraform"
      }
     }
+```
 
 This example will only create **3** *empty* buckets:
 
+```hcl
     module "s3" {
     source         = "github.com/dme86/tf-aws-s3?ref=v0.1"
     bucketnames    = ["example-s3-1", "example-s3-2", "example-s3-3"]
@@ -50,6 +57,8 @@ This example will only create **3** *empty* buckets:
        Owner       = "Terraform"
      }
     }
+```
+
 ## Attributes
 |Attribute|Default|
 |--|--|
