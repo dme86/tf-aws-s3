@@ -21,7 +21,7 @@ or something like
 This example will create **one** bucket with the folders *foo*, *bar*, *baz* & the subfolder *qux* inside *foo*:
 
     module "s3" {
-    source         = "github.com/dme86/tf-aws-s3?ref=v0.0.1"
+    source         = "github.com/dme86/tf-aws-s3?ref=v0.1"
     bucketnames    = ["example-s3-bucketname"]
     foldernames    = ["foo", "foo/qux", "bar", "baz"]
      tags          = {
@@ -32,7 +32,7 @@ This example will create **one** bucket with the folders *foo*, *bar*, *baz* & t
 This example will only create **one** *empty* bucket:
 
     module "s3" {
-    source         = "github.com/dme86/tf-aws-s3?ref=v0.0.1"
+    source         = "github.com/dme86/tf-aws-s3?ref=v0.1"
     bucketnames    = ["example-s3-bucketname"]
     foldernames    = []
      tags          = {
@@ -43,7 +43,7 @@ This example will only create **one** *empty* bucket:
 This example will only create **3** *empty* buckets:
 
     module "s3" {
-    source         = "github.com/dme86/tf-aws-s3?ref=v0.0.1"
+    source         = "github.com/dme86/tf-aws-s3?ref=v0.1"
     bucketnames    = ["example-s3-1", "example-s3-2", "example-s3-3"]
     foldernames    = []
      tags          = {
