@@ -1,5 +1,5 @@
 ### terraform s3 module
-This module enables you to create one (or more) S3 bucket/s with a list of (subfolders).
+This module enables you to create one (or more) S3 bucket/s with a list of (sub)folder/s.
 eg
 
      |_ Bucketname1
@@ -18,7 +18,7 @@ or something like
         |_ Folder_foo_bar
       |_ Folder_baz
 ## Examples for main.tf
-This example will create one bucket with the folders foo, bar, baz & the subfolder qux inside foo:
+This example will create **one** bucket with the folders *foo*, *bar*, *baz* & the subfolder *qux* inside *foo*:
 
     module "s3" {
     source         = "github.com/dme86/tf-aws-s3?ref=v0.0.1"
@@ -29,7 +29,7 @@ This example will create one bucket with the folders foo, bar, baz & the subfold
      }
     }
 
-This example will only create one empty bucket:
+This example will only create **one** *empty* bucket:
 
     module "s3" {
     source         = "github.com/dme86/tf-aws-s3?ref=v0.0.1"
@@ -40,7 +40,7 @@ This example will only create one empty bucket:
      }
     }
 
-This example will only create 3 empty buckets:
+This example will only create **3** *empty* buckets:
 
     module "s3" {
     source         = "github.com/dme86/tf-aws-s3?ref=v0.0.1"
@@ -50,4 +50,11 @@ This example will only create 3 empty buckets:
        Owner       = "Terraform"
      }
     }
-
+## Attributes
+|Attribute|Default|
+|--|--|
+|Versioning|On|
+|ACL|Private|
+|block_public_acls|true|
+|block_public_policy|true|
+|restrict_public_buckets|true|
