@@ -36,4 +36,7 @@ resource "aws_s3_bucket_object" "folders" {
     acl      = var.acl
     key      = format("%s/", each.value.folder)
     source   = "/dev/null"
+    depends_on = [
+      aws_s3_bucket.this,
+    ]
 }
