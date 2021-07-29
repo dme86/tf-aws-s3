@@ -1,17 +1,13 @@
 variable "tags" {}
 
-variable "rootlevelfolder" {
+variable "foldernames" {
   type    = list
   default = []
 }
 
-variable "sublevelfolder" {
+variable "bucketnames" {
   type    = list
   default = []
-}
-
-variable "bucketname" {
-  type    = string
 }
 
 variable "acl" {

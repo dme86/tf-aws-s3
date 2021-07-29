@@ -1,12 +1,24 @@
-# combine variable lists into 'folderstructure'
+# create a combined data structure
 locals {
-  folderstructure = setproduct(var.rootlevelfolder, var.sublevelfolder)
+
+  buckets_and_folders = merge([
+    for bucket in var.bucketnames:
+      {
+        for folder in var.foldernames:
+        "${bucket}-${folder}" => {
+          bucket = bucket
+          folder = folder
+        }
+      }
+  ]...)
+
 }
 
-# create s3 bucket
+# create some s3 buckets
 resource "aws_s3_bucket" "this" {
-  bucket = var.bucketname
-  acl    = var.acl
+  count         = "${length(var.bucketnames)}"
+  bucket        = "${element(var.bucketnames, count.index)}"
+  acl           = var.acl
   versioning {
     enabled = var.versioning
   }
@@ -15,11 +27,13 @@ resource "aws_s3_bucket" "this" {
 	}
 }
 
-# generate root and subfolders
-resource "aws_s3_bucket_object" "this" {
-    count         = length(var.rootlevelfolder) * length(var.sublevelfolder)
-    bucket        = aws_s3_bucket.this.id
-    acl           = var.acl
-    key           = "${element(local.folderstructure, count.index)[0]}/${element(local.folderstructure, count.index)[1]}/"
-    content_type  = "application/x-directory"
+# generate folderstructure in every bucket
+resource "aws_s3_bucket_object" "folders" {
+
+    for_each = local.buckets_and_folders
+
+    bucket   = each.value.bucket
+    acl      = var.acl
+    key      = format("%s/", each.value.folder)
+    source   = "/dev/null"
 }
