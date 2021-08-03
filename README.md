@@ -67,3 +67,7 @@ This example will only create **3** *empty* buckets:
 |block_public_acls|true|
 |block_public_policy|true|
 |restrict_public_buckets|true|
+
+## More
+
+Check out my other [terraform-aws-modules](https://github.com/dme86?tab=repositories&q=tf-aws)
